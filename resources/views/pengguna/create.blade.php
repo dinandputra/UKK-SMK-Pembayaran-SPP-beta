@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data SPP</a>
+        <a href="#">Data Pengguna</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="">Data Pengguna</a>
+                <a href="{{ url('/pengguna/index') }}">Data Pengguna</a>
             </li>
 
             <li>
@@ -53,20 +53,30 @@
 
     <div class="content">
         <h1>
-           <center>Tambah Data SPP</center>
+           <center>Tambah Data Pengguna</center>
         </h1>
         <br>
 
-        <form method="POST" action="{{url('/spp/index')}}">
+        <form method="POST" action="{{url('/pengguna/index')}}">
          @csrf
-            <label><b> ID Spp : </b></label>
-            <input type="text" name="id_spp" class="form-control" >
+            <label><b> ID </b></label>
+            <input type="text" name="id_petugas" class="form-control" >
 
-            <label><b> Tahun : </b></label>
-            <input type="text" name="tahun" class="form-control" >
+            <label><b> Username </b></label>
+            <input type="text" name="username" class="form-control" >
 
-            <label><b> Nominal per Tahun : </b></label>
-            <input type="text" name="nominal" class="form-control" >
+            <label><b> Password </b></label>
+            <input type="text" name="password" class="form-control" required autocomplete="new-password">
+
+            <label><b> Nama </b></label>
+            <input type="text" name="nama_petugas" class="form-control" >
+
+            <label><b> Hak Akses </b></label>
+            <select name="level" class="form-control" >
+                <option value="0" selected="selected"> User </option>
+                <option value="1" > Petugas </option>
+                <option value="2" > Admin </option>
+            </select>
             <br>
         
             <input type="submit" value="simpan" name="simpan" class="btn btn-success">  

@@ -45,7 +45,7 @@ class LoginController extends Controller
 
         $this -> validate($request, [
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
         if(auth()->attempt (array('username' => $input['username'], 'password' => $input['password']))){

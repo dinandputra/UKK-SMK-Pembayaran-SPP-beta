@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data SPP</a>
+        <a href="#">Data Pengguna</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="">Data Pengguna</a>
+                <a href="{{ url('/pengguna/index') }}">Data Pengguna</a>
             </li>
 
             <li>
@@ -53,25 +53,42 @@
 
     <div class="content">
         <h1>
-           <center>Tambah Data SPP</center>
+           <center>Data Pengguna</center>
         </h1>
+
+        <a href="{{ url('pengguna/index/create') }}" class="btn btn-info"> Tambah </a>
+        <br>
         <br>
 
-        <form method="POST" action="{{url('/spp/index')}}">
-         @csrf
-            <label><b> ID Spp : </b></label>
-            <input type="text" name="id_spp" class="form-control" >
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Username </th>
+                    <th> Nama </th>
+                    <th> Hak Akses </th>
+                    <th> &nbsp; </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($pengguna as $pgn)
+                    <tr>
+                        <td> {{ $pgn->id_petugas }} </td>
+                        <td> {{ $pgn->username }} </td>
+                        <td> {{ $pgn->nama_petugas }} </td>
+                        <td> {{ $pgn->level }} </td>
 
-            <label><b> Tahun : </b></label>
-            <input type="text" name="tahun" class="form-control" >
-
-            <label><b> Nominal per Tahun : </b></label>
-            <input type="text" name="nominal" class="form-control" >
-            <br>
-        
-            <input type="submit" value="simpan" name="simpan" class="btn btn-success">  
-        </form>
-        
+                        <td>
+                            <center>
+                                <a href="{{ URL::to('pengguna/hapuspengguna/' . $pgn->id_petugas ) }}" class="btn btn-danger"> Hapus </a>
+                            |
+                                <a href="{{ URL::to('pengguna/index/' . $pgn->id_petugas . '/edit') }}" class="btn btn-warning"> Ubah </a>
+                            </center>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     
 </body>

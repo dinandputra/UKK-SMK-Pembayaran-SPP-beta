@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="">Data Pengguna</a>
+                <a href="{{ url('/kelas/index') }}">Data Pengguna</a>
             </li>
 
             <li>
@@ -33,11 +33,11 @@
             </li>
 
             <li>
-                <a href="">Data Siswa</a>
+                <a href="{{ url('/siswa/index') }}">Data Siswa</a>
             </li>
 
             <li>
-                <a href="">Data Spp</a>
+                <a href="{{ url('/spp/index') }}">Data Spp</a>
             </li>
 
             <li>

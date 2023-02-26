@@ -33,7 +33,7 @@
             </li>
 
             <li>
-                <a href="">Data Siswa</a>
+                <a href="{{ url('/siswa/index') }}">Data Siswa</a>
             </li>
 
             <li>

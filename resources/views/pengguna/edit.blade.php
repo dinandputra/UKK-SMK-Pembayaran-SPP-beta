@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data SPP</a>
+        <a href="#">Data Pengguna</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="">Data Pengguna</a>
+                <a href="{{ url('/pengguna/index') }}">Data Pengguna</a>
             </li>
 
             <li>
@@ -53,24 +53,26 @@
 
     <div class="content">
         <h1>
-           <center>Tambah Data SPP</center>
+           <center>Ubah Data Pengguna</center>
         </h1>
         <br>
 
-        <form method="POST" action="{{url('/spp/index')}}">
+        {{-- <form method="POST" action="{{url('kelas/index/' . $kelas->id_kelas)}}">
          @csrf
-            <label><b> ID Spp : </b></label>
-            <input type="text" name="id_spp" class="form-control" >
+         @method('PUT')
 
-            <label><b> Tahun : </b></label>
-            <input type="text" name="tahun" class="form-control" >
+            <label><b> ID Kelas </b></label>
+            <input type="text" name="id_kelas" class="form-control" value="{{ $kelas->id_kelas }}">
 
-            <label><b> Nominal per Tahun : </b></label>
-            <input type="text" name="nominal" class="form-control" >
+            <label><b> Kelas </b></label>
+            <input type="text" name="nama_kelas" class="form-control" value="{{ $kelas->nama_kelas }}">
+
+            <label><b> Jurusan </b></label>
+            <input type="text" name="jurusan" class="form-control" value="{{ $kelas->jurusan }}">
             <br>
         
             <input type="submit" value="simpan" name="simpan" class="btn btn-success">  
-        </form>
+        </form> --}}
         
     </div>
     

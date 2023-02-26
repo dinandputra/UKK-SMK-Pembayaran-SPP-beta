@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SppController;
 use App\Http\Controllers\SiswaController;
-
+use App\Http\Controllers\PenggunaController;
 
 
 /*
@@ -24,6 +24,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 // logout
 Route::get('/logout', [LoginController::class, 'logout']);
 
@@ -39,11 +41,13 @@ Route::get('/spp/hapusspp/{id_spp}', [SppController::class, 'destroy']);
 Route::resource('/siswa/index', SiswaController::class);
 Route::get('/siswa/hapussiswa/{nisn}', [SiswaController::class, 'destroy']);
 
-//CRUD USER
+//CRUD PENGGUNA
+Route::resource('/pengguna/index', PenggunaController::class);
+Route::get('/pengguna/hapuspengguna/{id_pengguna}', [PenggunaController::class, 'destroy']);
 
 //CRUD PEMBAYARAN
 
-Auth::routes();
+
 
 // Admin route
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
@@ -51,13 +55,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.adminHome');
 });
 
-
 // Petugas Route
 Route::middleware(['auth', 'user-access:petugas'])->group(function () {
   
     Route::get('/petugas/home', [HomeController::class, 'petugasHome'])->name('petugas.petugasHome');
 });
-
 
 // User Route
 Route::middleware(['auth', 'user-access:user'])->group(function () {
