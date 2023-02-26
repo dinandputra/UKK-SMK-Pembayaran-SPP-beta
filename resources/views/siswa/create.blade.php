@@ -33,11 +33,11 @@
             </li>
 
             <li>
-                <a href="">Data Siswa</a>
+                <a href="{{ url('/siswa/index') }}">Data Siswa</a>
             </li>
 
             <li>
-                <a href="">Data Spp</a>
+                <a href="{{ url('/spp/index') }}">Data Spp</a>
             </li>
 
             <li>
@@ -53,20 +53,40 @@
 
     <div class="content">
         <h1>
-           <center>Tambah Data Kelas</center>
+           <center>Tambah Data Siswa</center>
         </h1>
         <br>
 
-        <form method="POST" action="{{url('/kelas/index')}}">
+        <form method="POST" action="{{url('/siswa/index')}}">
          @csrf
-            <label><b> ID Kelas </b></label>
-            <input type="text" name="id_kelas" class="form-control" >
+            <label><b> NISN </b></label>
+            <input type="text" name="nisn" class="form-control" >
+
+            <label><b> NIS </b></label>
+            <input type="text" name="nis" class="form-control" >
+
+            <label><b> Nama </b></label>
+            <input type="text" name="nama" class="form-control" >
 
             <label><b> Kelas </b></label>
-            <input type="text" name="nama_kelas" class="form-control" >
+            <select name="id_kelas" class="form-control" >
+                @foreach ($kelas as $kls)
+                    <option value="{{ $kls->id_kelas }}"> {{ $kls->nama_kelas }} - {{ $kls->jurusan }} </option>
+                @endforeach
+            </select>
 
-            <label><b> Jurusan </b></label>
-            <input type="text" name="jurusan" class="form-control" >
+            <label><b> Alamat </b></label>
+            <input type="text" name="alamat" class="form-control" >
+
+            <label><b> No. Telepon </b></label>
+            <input type="text" name="no_telp" class="form-control" >
+
+            <label><b> Nominal SPP </b></label>
+            <select name="id_spp" class="form-control">
+                @foreach ($spp as $spp)
+                    <option value="{{ $spp->id_spp }}"> Rp. {{ $spp->nominal }} / Tahun </option>
+                @endforeach
+            </select>
             <br>
         
             <input type="submit" value="simpan" name="simpan" class="btn btn-success">  

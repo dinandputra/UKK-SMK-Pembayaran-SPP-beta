@@ -20,7 +20,7 @@ class SppController extends Controller
                 ->orderBy('spp.id_spp', 'asc')
                 ->get();
 
-        return view('admin.spp.index', compact('spp') );
+        return view('spp.index', compact('spp') );
     }
 
     /**
@@ -30,7 +30,7 @@ class SppController extends Controller
      */
     public function create()
     {
-        return view("admin/spp/create");
+        return view("spp/create");
     }
 
     /**
@@ -71,7 +71,7 @@ class SppController extends Controller
     {
         $spp = Spp::find($id_spp);
 
-        return view('admin.spp.edit', compact('spp'));
+        return view('spp.edit', compact('spp'));
     }
 
     /**

@@ -27,27 +27,28 @@ Route::get('/', function () {
 // logout
 Route::get('/logout', [LoginController::class, 'logout']);
 
+//CRUD KELAS
+Route::resource('/kelas/index', KelasController::class); 
+Route::get('/kelas/hapuskelas/{id_kelas}', [KelasController::class, 'destroy']);
+
+//CRUD SPP
+Route::resource('/spp/index', SppController::class);
+Route::get('/spp/hapusspp/{id_spp}', [SppController::class, 'destroy']);
+
+//CRUD SISWA
+Route::resource('/siswa/index', SiswaController::class);
+Route::get('/siswa/hapussiswa/{nisn}', [SiswaController::class, 'destroy']);
+
+//CRUD USER
+
+//CRUD PEMBAYARAN
+
 Auth::routes();
 
 // Admin route
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
   
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.adminHome');
-
-    //CRUD KELAS
-    Route::resource('/kelas/index', KelasController::class);
-    Route::get('/kelas/hapuskelas/{id_kelas}', [KelasController::class, 'destroy']);
-
-    //CRUD SPP
-    Route::resource('/spp/index', SppController::class);
-    Route::get('/spp/hapusspp/{id_spp}', [SppController::class, 'destroy']);
-
-    //CRUD SISWA
-    Route::resource('/siswa/index', SiswaController::class);
-
-    //CRUD USER
-
-    //CRUD PEMBAYARAN
 });
 
 

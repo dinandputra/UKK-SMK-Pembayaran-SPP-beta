@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data Kelas</a>
+        <a href="#">Data SPP</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -53,25 +53,40 @@
 
     <div class="content">
         <h1>
-           <center>Tambah Data SPP</center>
+           <center>Data SPP</center>
         </h1>
+
+        <a href="{{ url('spp/index/create') }}" class="btn btn-info"> Tambah </a>
+        <br>
         <br>
 
-        <form method="POST" action="{{url('/spp/index')}}">
-         @csrf
-            <label><b> ID Spp : </b></label>
-            <input type="text" name="id_spp" class="form-control" >
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Tahun </th>
+                    <th> Nominal </th>
+                    <th> &nbsp; </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($spp as $spp)
+                    <tr>
+                        <td> {{ $spp->id_spp }} </td>
+                        <td> {{ $spp->tahun }} </td>
+                        <td> Rp. {{ $spp->nominal }} / Tahun </td>
 
-            <label><b> Tahun : </b></label>
-            <input type="text" name="tahun" class="form-control" >
-
-            <label><b> Nominal per Tahun : </b></label>
-            <input type="text" name="nominal" class="form-control" >
-            <br>
-        
-            <input type="submit" value="simpan" name="simpan" class="btn btn-success">  
-        </form>
-        
+                        <td>
+                            <center>
+                                <a href="{{ URL::to('/spp/hapusspp/' . $spp->id_spp ) }}" class="btn btn-danger"> Hapus </a>
+                            |
+                                <a href="{{ URL::to('/spp/index/' . $spp->id_spp . '/edit') }}" class="btn btn-warning"> Ubah </a>
+                            </center>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     
 </body>

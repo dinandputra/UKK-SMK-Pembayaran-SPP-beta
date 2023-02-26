@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data Kelas</a>
+        <a href="#">Data SPP</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -53,40 +53,25 @@
 
     <div class="content">
         <h1>
-           <center>Data Kelas</center>
+           <center>Tambah Data SPP</center>
         </h1>
-
-        <a href="{{ url('kelas/index/create') }}" class="btn btn-info"> Tambah </a>
-        <br>
         <br>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th> ID </th>
-                    <th> Nama Kelas </th>
-                    <th> Jurusan </th>
-                    <th> &nbsp; </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($kelas as $kls)
-                    <tr>
-                        <td> {{ $kls->id_kelas }} </td>
-                        <td> {{ $kls->nama_kelas }} </td>
-                        <td> {{ $kls->jurusan }} </td>
+        <form method="POST" action="{{url('/spp/index')}}">
+         @csrf
+            <label><b> ID Spp : </b></label>
+            <input type="text" name="id_spp" class="form-control" >
 
-                        <td>
-                            <center>
-                                <a href="{{ URL::to('kelas/hapuskelas/' . $kls->id_kelas ) }}" class="btn btn-danger"> Hapus </a>
-                            |
-                                <a href="{{ URL::to('kelas/index/' . $kls->id_kelas . '/edit') }}" class="btn btn-warning"> Ubah </a>
-                            </center>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <label><b> Tahun : </b></label>
+            <input type="text" name="tahun" class="form-control" >
+
+            <label><b> Nominal per Tahun : </b></label>
+            <input type="text" name="nominal" class="form-control" >
+            <br>
+        
+            <input type="submit" value="simpan" name="simpan" class="btn btn-success">  
+        </form>
+        
     </div>
     
 </body>

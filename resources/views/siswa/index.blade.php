@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data Kelas</a>
+        <a href="#">Data Siswa</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -33,7 +33,7 @@
             </li>
 
             <li>
-                <a href="">Data Siswa</a>
+                <a href="{{ url('/siswa/index') }}">Data Siswa</a>
             </li>
 
             <li>
@@ -53,34 +53,44 @@
 
     <div class="content">
         <h1>
-           <center>Data SPP</center>
+           <center>Data Siswa</center>
         </h1>
 
-        <a href="{{ url('spp/index/create') }}" class="btn btn-info"> Tambah </a>
+        <a href="{{ url('siswa/index/create') }}" class="btn btn-info"> Tambah </a>
         <br>
         <br>
 
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th> ID </th>
-                    <th> Tahun </th>
-                    <th> Nominal </th>
+                    <th> NISN </th>
+                    <th> NIS </th>
+                    <th> Nama </th>
+                    <th> Kelas </th>
+                    <th> Jurusan </th>
+                    <th> No. Telepon </th>
+                    <th> Alamat </th>
+                    <th> Nominal SPP </th>
                     <th> &nbsp; </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($spp as $spp)
+                @foreach ($siswa as $sws)
                     <tr>
-                        <td> {{ $spp->id_spp }} </td>
-                        <td> {{ $spp->tahun }} </td>
-                        <td> Rp. {{ $spp->nominal }} / Tahun </td>
+                        <td> {{ $sws->nisn }} </td>
+                        <td> {{ $sws->nis }} </td>
+                        <td> {{ $sws->nama }} </td>
+                        <td> {{ $sws->nama_kelas }} </td>
+                        <td> {{ $sws->jurusan }} </td>
+                        <td> {{ $sws->no_telp }} </td>
+                        <td> {{ $sws->alamat }} </td>
+                        <td> {{ $sws->nominal }} </td>
 
                         <td>
                             <center>
-                                <a href="{{ URL::to('/spp/hapusspp/' . $spp->id_spp ) }}" class="btn btn-danger"> Hapus </a>
+                                <a href="{{ URL::to('siswa/hapussiswa/' . $sws->nisn ) }}" class="btn btn-danger"> Hapus </a>
                             |
-                                <a href="{{ URL::to('/spp/index/' . $spp->id_spp . '/edit') }}" class="btn btn-warning"> Ubah </a>
+                                <a href="{{ URL::to('siswa/index/' . $sws->nisn . '/edit') }}" class="btn btn-warning"> Ubah </a>
                             </center>
                         </td>
                     </tr>

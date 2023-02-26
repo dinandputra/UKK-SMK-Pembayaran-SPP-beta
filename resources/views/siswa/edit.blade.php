@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data Kelas</a>
+        <a href="#">Data Siswa</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
@@ -33,11 +33,11 @@
             </li>
 
             <li>
-                <a href="">Data Siswa</a>
+                <a href="{{ url('/siswa/index') }}">Data Siswa</a>
             </li>
 
             <li>
-                <a href="">Data Spp</a>
+                <a href="{{ url('/spp/index') }}">Data Spp</a>
             </li>
 
             <li>
@@ -53,22 +53,42 @@
 
     <div class="content">
         <h1>
-           <center>Ubah Data Kelas</center>
+           <center>Ubah Data Siswa</center>
         </h1>
         <br>
 
-        <form method="POST" action="{{url('kelas/index/' . $kelas->id_kelas)}}">
+        <form method="POST" action="{{url('siswa/index/' . $siswa->nisn)}}">
          @csrf
          @method('PUT')
 
-            <label><b> ID Kelas </b></label>
-            <input type="text" name="id_kelas" class="form-control" value="{{ $kelas->id_kelas }}">
+            <label><b> NISN </b></label>
+            <input type="text" name="nisn" class="form-control" value="{{ $siswa->nisn }}">
+
+            <label><b> NIS </b></label>
+            <input type="text" name="nis" class="form-control" value="{{ $siswa->nis }}">
+
+            <label><b> Nama </b></label>
+            <input type="text" name="nama" class="form-control" value="{{ $siswa->nama }}">
 
             <label><b> Kelas </b></label>
-            <input type="text" name="nama_kelas" class="form-control" value="{{ $kelas->nama_kelas }}">
+            <select name="id_kelas" class="form-control" >
+                @foreach ($kelas as $kls)
+                    <option value="{{ $kls->id_kelas }}"> {{ $kls->nama_kelas }} - {{ $kls->jurusan }} </option>
+                @endforeach
+            </select>
 
-            <label><b> Jurusan </b></label>
-            <input type="text" name="jurusan" class="form-control" value="{{ $kelas->jurusan }}">
+            <label><b> Alamat </b></label>
+            <input type="text" name="alamat" class="form-control" value="{{ $siswa->alamat }}">
+
+            <label><b> No. Telepon </b></label>
+            <input type="text" name="no_telp" class="form-control" value="{{ $siswa->no_telp }}">
+
+            <label><b> Nominal SPP </b></label>
+            <select name="id_spp" class="form-control">
+                @foreach ($spp as $spp)
+                    <option value="{{ $spp->id_spp }}"> Rp. {{ $spp->nominal }} / Tahun </option>
+                @endforeach
+            </select>
             <br>
         
             <input type="submit" value="simpan" name="simpan" class="btn btn-success">  

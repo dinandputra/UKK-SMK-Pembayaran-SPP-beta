@@ -20,7 +20,7 @@ class KelasController extends Controller
                 ->orderBy('kls.id_kelas', 'asc')
                 ->get();
 
-        return view('admin.kelas.index', compact('kelas'));
+        return view('kelas.index', compact('kelas'));
 
     }
 
@@ -32,7 +32,7 @@ class KelasController extends Controller
     public function create()
     {
 
-        return view("/admin/kelas/create");
+        return view("kelas/create");
         
     }
 
@@ -76,7 +76,7 @@ class KelasController extends Controller
     {
         $kelas = Kelas::find($id_kelas);
 
-        return view('admin.kelas.edit', compact('kelas'));
+        return view('kelas.edit', compact('kelas'));
     }
 
     /**

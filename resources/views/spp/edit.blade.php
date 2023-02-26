@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Data Kelas</a>
+        <a href="#">Data SPP</a>
 
         <form method="POST" action="/logout" class="logout">
           @csrf
